@@ -1,0 +1,333 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "draft666",
+    "title": "OpenApi1",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://localhost:50012"
+    }
+  ],
+  "paths": {
+    "/api/v1/open/amc/cards": {
+        "get": {
+            "summary": "/",
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        },
+        "post": {
+            "summary": "/",
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Platform.DataAccess.Amc.CardRequestAddModel"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/cards/{cardid}": {
+        "get": {
+            "summary": "/",
+            "parameters": [
+                {
+                    "name": "cardid",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        },
+        "put": {
+            "summary": "/",
+            "parameters": [
+                {
+                    "name": "cardid",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Integrations.AdMediaCards.ChangeRequestAddModel"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/cards/{cardid}/transactions": {
+        "get": {
+            "summary": "/transactions",
+            "parameters": [
+                {
+                    "name": "cardid",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/cards/{cardid}/notes": {
+        "post": {
+            "summary": "/notes",
+            "parameters": [
+                {
+                    "name": "cardid",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/OpenApi.Controllers.AddClientNoteModel"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/cards/{cardid}/showpan": {
+        "get": {
+            "summary": "/showpan",
+            "parameters": [
+                {
+                    "name": "cardid",
+                    "in": "path",
+                    "required": true,
+                    "schema": {
+                    "type": "integer",
+                    "format": "int32"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/balance": {
+        "get": {
+            "summary": "/balance",
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    },
+    "/api/v1/open/amc/approval-profile": {
+        "get": {
+            "summary": "/approval-profile",
+            "responses": {
+                "200": {
+                    "description": "Success"
+                }
+            }
+        }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Platform.DataAccess.Amc.CardRequestAddModel": {
+        "required": [
+          "bin",
+          "countryIso"
+        ],
+        "type": "object",
+        "properties": {
+          "clientID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bin": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          },
+          "countryIso": {
+            "type": "string"
+          },
+          "ssn": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Common.Enums.AmcChangeRequestType": {
+        "enum": [
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Integrations.AdMediaCards.ChangeRequestAddModel": {
+        "type": "object",
+        "properties": {
+          "cardID": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/Common.Enums.AmcChangeRequestType"
+          },
+          "limit": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "address1": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "zip": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OpenApi.Controllers.AddClientNoteModel": {
+        "required": [
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "Authorization"
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
