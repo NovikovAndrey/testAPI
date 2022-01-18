@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "draft",
+    "version": "draft666",
     "title": "OpenApi",
     "license": {
       "name": "MIT"
